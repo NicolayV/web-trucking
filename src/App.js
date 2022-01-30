@@ -1,5 +1,13 @@
+import React from "react";
+import { BrowserRouter } from "react-router-dom";
+import AppRouter from "./router/AppRouter";
+
 function App() {
-  return <div>Learn React</div>;
+  return (
+    <BrowserRouter>
+      <AppRouter />
+    </BrowserRouter>
+  );
 }
 
 export default App;
