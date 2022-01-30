@@ -1,7 +1,7 @@
 import { Button } from "@mui/material";
 import React from "react";
 
-const Button = ({
+const BasicButton = ({
   color,
   children,
   disabled,
@@ -26,4 +26,4 @@ const Button = ({
   );
 };
 
-export default Button;
+export default BasicButton;

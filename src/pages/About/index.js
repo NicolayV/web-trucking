@@ -1,12 +1,14 @@
 import React from "react";
-import Button from "@mui/material/Button";
 import Grid from "@mui/material/Grid";
+
+import Badge from "@mui/material/Badge";
+import MailIcon from "@mui/icons-material/Mail";
 
 const About = () => (
   <Grid item xs={8}>
-    <Button variant="contained">
-      Abocccccdvsvsvsvdvsfvsvsfvsfvsvsfvsfvsvsvfsvsvsvsvsvsvsvsfvut
-    </Button>
+    <Badge badgeContent={4} color="primary">
+      <MailIcon color="action" />
+    </Badge>
   </Grid>
 );
 
