@@ -1,3 +1,4 @@
+import { Grid } from "@mui/material";
 import React from "react";
 import { Routes, Route, Outlet } from "react-router-dom";
 import About from "../pages/About";
@@ -27,7 +28,10 @@ const AppRouter = () => {
         element={
           <>
             <Layout />
-            <Outlet />
+            <Grid container style={{marginLeft: "320px"}}>
+
+            <Outlet  />
+            </Grid>
           </>
         }
       >

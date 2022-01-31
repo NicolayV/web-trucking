@@ -35,7 +35,6 @@ const NotificationItem = ({ iconButtonColor, iconColor }) => {
         <IconButton
           color={iconButtonColor}
           onClick={notifications.length ? handleOpen : null}
-          anchorEl={anchorEl}
         >
           <Badge badgeContent={notifications.length} color="primary">
             <NotificationsIcon color={iconColor} />
