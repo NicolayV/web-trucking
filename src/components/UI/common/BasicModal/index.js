@@ -2,12 +2,9 @@ import React from "react";
 import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
 import Modal from "@mui/material/Modal";
-import { Input } from "@mui/material";
 import BasicButton from "../BasicButton";
 
-const BasicModal = ({ open, onClose }) => {
-  const validate = () => {};
-
+const BasicModal = ({ open, onClose, title, subTitle, content, onSubmit }) => {
   const modalStyle = {
     wrapper: {
       position: "absolute",
@@ -20,15 +17,6 @@ const BasicModal = ({ open, onClose }) => {
       boxShadow: 24,
       p: 4,
     },
-    inputFields: {
-      display: "flex",
-      flexDirection: "column",
-      marginTop: "20px",
-      marginBottom: "15px",
-      // ".MuiBox-root": {
-      //   marginBottom: "20px",
-      // },
-    },
     buttons: {
       display: "flex",
       justifyContent: "end",
@@ -39,20 +27,12 @@ const BasicModal = ({ open, onClose }) => {
     <Modal open={open} onClose={onClose}>
       <Box sx={modalStyle.wrapper}>
         <Typography variant="h6" component="h2">
-          New user
-          {/* {title} */}
+          {title}
         </Typography>
-        <Typography sx={{ mt: 2 }}>
-          {/* {subTitle} */}
-          Duis mollis, est non commodo luctus, nisi erat porttitor ligula.
-        </Typography>
-        <Box sx={modalStyle.inputFields}>
-          <Input placeholder="E-mail" />
-          <Input placeholder="Phone number" />
-          <Input placeholder="User ID" />
-        </Box>
+        <Typography sx={{ mt: 2 }}>{subTitle}</Typography>
+        {content}
         <Box sx={modalStyle.buttons}>
-          <BasicButton variant={"contained"} onClick={validate}>
+          <BasicButton variant="contained" onClick={onSubmit}>
             Submit
           </BasicButton>
         </Box>

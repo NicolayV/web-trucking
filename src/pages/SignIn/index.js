@@ -1,6 +1,6 @@
 import React from "react";
-import BasicCard from "../../components/UI/BasicCard";
-import GridWrapper from "../../components/UI/GridWrapper";
+import BasicCard from "../../components/UI/common/BasicCard";
+import GridWrapper from "../../components/UI/common/GridWrapper";
 
 const SignIn = () => (
   <GridWrapper item xs={8}>

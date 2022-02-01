@@ -1,21 +1,18 @@
 import { Grid } from "@mui/material";
 import React from "react";
-import BasicButton from "../../components/UI/BasicButton";
+import BasicButton from "../../components/UI/common/BasicButton";
 
 const NewsArticle = () => (
   <>
-
-  <Grid item xs={4} >
-  <div style={{border: "1px solid black"}}>ggg</div>
-  </Grid>
-  <Grid item xs={4} >
-  <div style={{border: "1px solid black"}}>ggg</div>
-
-  </Grid>
-  <Grid item xs={4} >
-  <div style={{border: "1px solid black"}}>ggg</div>
-
-  </Grid>
+    <Grid item xs={4}>
+      <div style={{ border: "1px solid black" }}>ggg</div>
+    </Grid>
+    <Grid item xs={4}>
+      <div style={{ border: "1px solid black" }}>ggg</div>
+    </Grid>
+    <Grid item xs={4}>
+      <div style={{ border: "1px solid black" }}>ggg</div>
+    </Grid>
   </>
 );
 

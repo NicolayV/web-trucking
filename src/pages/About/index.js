@@ -1,12 +1,12 @@
 import React, { useState } from "react";
 import Grid from "@mui/material/Grid";
 
-import BasicCard from "../../components/UI/BasicCard";
-import SearchBar from "../../components/UI/SearchBar";
+import BasicCard from "../../components/UI/common/BasicCard";
+import SearchBar from "../../components/UI/common/SearchBar";
 import { Box, IconButton, Typography } from "@mui/material";
-import BasicButton from "../../components/UI/BasicButton";
+import BasicButton from "../../components/UI/common/BasicButton";
 import RefreshIcon from "@mui/icons-material/Refresh";
-import BasicModal from "../../components/UI/BasicModal";
+import NewUserModal from "../../components/UI/Modals/NewUserModal";
 
 const About = () => {
   const [open, setOpen] = useState(false);
@@ -70,6 +70,8 @@ const About = () => {
     </Typography>
   );
 
+  const addNewUser = (data) => console.log(data);
+
   return (
     <Grid
       item
@@ -82,7 +84,11 @@ const About = () => {
       }}
     >
       <BasicCard header={getHeader()} content={getContent()} />
-      <BasicModal open={open} onClose={() => setOpen(false)} />
+      <NewUserModal
+        open={open}
+        onClose={() => setOpen(false)}
+        addNewUser={addNewUser}
+      />
     </Grid>
   );
 };

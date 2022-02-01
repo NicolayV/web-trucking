@@ -1,8 +1,8 @@
 import React from "react";
-import NotificationItem from "../NotificationItem";
-import BasicButton from "../BasicButton";
+import NotificationItem from "../common/NotificationItem";
+import BasicButton from "../common/BasicButton";
 import Avatar from "@mui/material/Avatar";
-import { Box, Grid, IconButton, Tooltip, Typography } from "@mui/material";
+import { Box, IconButton, Tooltip, Typography } from "@mui/material";
 import HelpIcon from "@mui/icons-material/Help";
 
 const headerStyles = {
