@@ -10,9 +10,26 @@ import NewUserModal from "../../components/UI/Modals/NewUserModal";
 
 const About = () => {
   const [open, setOpen] = useState(false);
+  const [users, setUsers] = useState([]);
+  const [searchResults, setSearchResults] = useState(users);
 
   const getHeader = () => {
-    const changeHandler = (value) => console.log(value);
+    const handleSearch = (value) => {
+      filterData(value);
+    };
+
+    const filterData = (value) => {
+      const lowercasedValue = value.toLowerCase().trim();
+      if (lowercasedValue === "") setUsers(searchResults);
+      else {
+        const filteredData = searchResults.filter((item) => {
+          return Object.keys(item).some((key) =>
+            item[key].toString().toLowerCase().includes(lowercasedValue)
+          );
+        });
+        setUsers(filteredData);
+      }
+    };
 
     const addUser = () => setOpen(true);
 
@@ -32,9 +49,9 @@ const About = () => {
         <Grid item xs={8}>
           <Box sx={{ display: "flex", alignItems: "center" }}>
             <SearchBar
-              searchBarWidth="300px"
               placeholder={"Enter search text..."}
-              onChange={(event) => changeHandler(event.target.value)}
+              onChange={(event) => handleSearch(event.target.value)}
+              searchBarWidth="300px"
             />
           </Box>
         </Grid>
@@ -58,19 +75,39 @@ const About = () => {
   };
 
   const getContent = () => (
-    <Typography
-      align="center"
-      sx={{
-        margin: "40px 16px",
-        color: "rgba(0, 0, 0, 0.6)",
-        fontSize: "1.3rem",
-      }}
-    >
-      No users for this project yet
-    </Typography>
+    <>
+      {users.length ? (
+        users.map((user) => (
+          <Box
+            sx={{
+              marginBottom: "20px",
+            }}
+          >
+            <Typography>User Id: {user.userId}</Typography>
+            <Typography>Email: {user.email}</Typography>
+            <Typography>Phone number: {user.phoneNumber}</Typography>
+          </Box>
+        ))
+      ) : (
+        <Typography
+          align="center"
+          sx={{
+            margin: "40px 16px",
+            color: "rgba(0, 0, 0, 0.6)",
+            fontSize: "1.3rem",
+          }}
+        >
+          No users for this project yet
+        </Typography>
+      )}
+    </>
   );
 
-  const addNewUser = (data) => console.log(data);
+  const addNewUser = (data) => {
+    // setUsers((prev) => [...prev, { ...data }]);
+    users.push({ ...data });
+    setOpen(false);
+  };
 
   return (
     <Grid

@@ -28,9 +28,8 @@ const AppRouter = () => {
         element={
           <>
             <Layout />
-            <Grid container style={{marginLeft: "320px"}}>
-
-            <Outlet  />
+            <Grid container style={{ marginLeft: "320px" }}>
+              <Outlet />
             </Grid>
           </>
         }

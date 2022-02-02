@@ -7,3 +7,4 @@ ReactDOM.render(<App />, document.getElementById("root"));
 
 // ! Страница о компании в карточке переписать стили header
 // ! SearchBar не встает адаптивная длина fullWidth
+// ! переделать grid wrapper
