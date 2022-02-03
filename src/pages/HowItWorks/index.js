@@ -5,7 +5,12 @@ import BasicCard from "../../components/UI/common/BasicCard";
 import ProgressStepper from "../../components/UI/common/ProgressStepper";
 
 const HowItWorks = () => {
-  const getContent = () => <ProgressStepper />;
+  const steps = ["Step 1", "Step 2", "Step 3"];
+  const stepDescription = ["Description 1", "Description 2", "Description 3"];
+
+  const getContent = () => (
+    <ProgressStepper steps={steps} stepDescription={stepDescription} />
+  );
 
   return (
     <Grid
