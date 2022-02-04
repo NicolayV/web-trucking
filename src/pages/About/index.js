@@ -7,6 +7,7 @@ import { Box, IconButton, Typography } from "@mui/material";
 import BasicButton from "../../components/UI/common/BasicButton";
 import RefreshIcon from "@mui/icons-material/Refresh";
 import NewUserModal from "../../components/UI/Modals/NewUserModal";
+import GridWrapper from "../../components/UI/common/GridWrapper";
 
 const About = () => {
   const [open, setOpen] = useState(false);
@@ -110,23 +111,14 @@ const About = () => {
   };
 
   return (
-    <Grid
-      item
-      xs={12}
-      sx={{
-        backgroundColor: "#eaeff1",
-        padding: "48px 32px",
-        minHeight: "calc(100vh - 166px)",
-        position: "relative",
-      }}
-    >
+    <GridWrapper>
       <BasicCard header={getHeader()} content={getContent()} />
       <NewUserModal
         open={open}
         onClose={() => setOpen(false)}
         addNewUser={addNewUser}
       />
-    </Grid>
+    </GridWrapper>
   );
 };
 

@@ -1,11 +1,26 @@
-import React from "react";
-import BasicCard from "../../components/UI/common/BasicCard";
+import React, { useEffect, useState } from "react";
+
 import GridWrapper from "../../components/UI/common/GridWrapper";
 
-const SignUp = () => (
-  <GridWrapper item xs={1} sx={{ marginLeft: "320px" }}>
-    <BasicCard />
-  </GridWrapper>
-);
+import SignInForm from "../../components/SignUpForm";
+
+const SignUp = () => {
+  const [values, setValues] = useState("");
+  console.log(values);
+
+  const handleChange = (value) => {
+    setValues(value);
+  };
+
+  const addNewUser = (data) => {
+    handleChange(data);
+  };
+
+  return (
+    <GridWrapper>
+      <SignInForm addNewUser={addNewUser} />
+    </GridWrapper>
+  );
+};
 
 export default SignUp;

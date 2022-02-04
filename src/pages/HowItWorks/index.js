@@ -1,8 +1,8 @@
 import React from "react";
-import Button from "@mui/material/Button";
 import Grid from "@mui/material/Grid";
 import BasicCard from "../../components/UI/common/BasicCard";
 import ProgressStepper from "../../components/UI/common/ProgressStepper";
+import GridWrapper from "../../components/UI/common/GridWrapper";
 
 const HowItWorks = () => {
   const steps = ["Step 1", "Step 2", "Step 3"];
@@ -13,20 +13,9 @@ const HowItWorks = () => {
   );
 
   return (
-    <Grid
-      item
-      xs={12}
-      sx={{
-        backgroundColor: "#eaeff1",
-        padding: "48px 32px",
-        minHeight: "calc(100vh - 166px)",
-        position: "relative",
-      }}
-    >
+    <GridWrapper>
       <BasicCard header={"ProgressStepper"} content={getContent()} />
-
-      <Button variant="contained">HowItWorks</Button>
-    </Grid>
+    </GridWrapper>
   );
 };
 
