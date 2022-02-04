@@ -9,6 +9,7 @@ import NewsArticle from "../pages/NewsArticle";
 import PersonalArea from "../pages/PersonalArea";
 import SignIn from "../pages/SignIn";
 import SignUp from "../pages/SignUp";
+import SignUpCustomer from "../pages/SignUpCustomer";
 
 const routeItems = [
   { id: 0, path: "about", element: <About /> },
@@ -18,6 +19,7 @@ const routeItems = [
   { id: 4, path: "feedback", element: <Feedback /> },
   { id: 5, path: "signin", element: <SignIn /> },
   { id: 6, path: "signup", element: <SignUp /> },
+  { id: 7, path: "signup/customer", element: <SignUpCustomer /> },
 ];
 
 const AppRouter = () => {

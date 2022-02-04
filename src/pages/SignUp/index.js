@@ -1,40 +1,30 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
+import { useNavigate } from "react-router-dom";
+import { Box } from "@mui/material";
 
 import GridWrapper from "../../components/UI/common/GridWrapper";
-
-import SignUpForm from "../../components/SignUpForm";
+import BasicButton from "../../components/UI/common/BasicButton";
 
 const SignUp = () => {
-  const [values, setValues] = useState("");
-  console.log(values);
+  const navigate = useNavigate();
 
-  const handleChange = (value) => {
-    setValues(value);
-  };
+  const handleNavigate = () =>
+    navigate("../signup/customer", { replace: true });
 
-  const addNewUser = (data) => {
-    handleChange(data);
+  const signupStyles = {
+    display: "flex",
+    justifyContent: "space-around",
+    padding: "40px",
   };
 
   return (
     <GridWrapper>
-      {/* <Box
-        sx={{
-          display: "flex",
-          justifyContent: "space-around",
-          padding: "40px",
-        }}
-      >
-        <BasicButton
-          variant={"contained"}
-          onClick={() => navigate("signupcustomer")}
-          
-        >
+      <Box sx={signupStyles}>
+        <BasicButton variant={"contained"} onClick={handleNavigate}>
           Заказчик
         </BasicButton>
-        <BasicButton variant={"contained"}>Перевозчик</BasicButton> */}
-      <SignUpForm addNewUser={addNewUser} />
-      {/* </Box> */}
+        <BasicButton variant={"contained"}>Перевозчик</BasicButton>
+      </Box>
     </GridWrapper>
   );
 };

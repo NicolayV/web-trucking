@@ -1,4 +1,3 @@
-import { Grid } from "@mui/material";
 import React, { useEffect, useState } from "react";
 import { useLocation } from "react-router-dom";
 import Header from "../../components/UI/Header/index.js";
@@ -15,7 +14,10 @@ const Layout = () => {
       const title = location.pathname.replace(/\W/g, "");
       arr.forEach((element) => {
         if (title === element.route) {
+          // ! сделать логику более гибкой и универсальной
           result = element.label;
+        } else {
+          result = null;
         }
       });
     } else {
