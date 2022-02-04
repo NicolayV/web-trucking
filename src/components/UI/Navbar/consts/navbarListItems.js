@@ -31,23 +31,23 @@ export const navbarListItems = [
     label: "Личный кабинет",
     route: "personalarea",
   },
-
   {
     id: 4,
-    icon: <ContactSupportIcon />,
-    label: "Обратная связь",
-    route: "feedback",
-  },
-  {
-    id: 5,
     icon: <LoginIcon />,
     label: "Войти",
     route: "signin",
   },
   {
-    id: 6,
+    id: 5,
     icon: <AppRegistrationIcon />,
     label: "Зарегистрироваться",
     route: "signup",
+  },
+
+  {
+    id: 6,
+    icon: <ContactSupportIcon />,
+    label: "Обратная связь",
+    route: "feedback",
   },
 ];

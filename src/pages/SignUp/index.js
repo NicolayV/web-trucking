@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 
 import GridWrapper from "../../components/UI/common/GridWrapper";
 
-import SignInForm from "../../components/SignUpForm";
+import SignUpForm from "../../components/SignUpForm";
 
 const SignUp = () => {
   const [values, setValues] = useState("");
@@ -18,7 +18,23 @@ const SignUp = () => {
 
   return (
     <GridWrapper>
-      <SignInForm addNewUser={addNewUser} />
+      {/* <Box
+        sx={{
+          display: "flex",
+          justifyContent: "space-around",
+          padding: "40px",
+        }}
+      >
+        <BasicButton
+          variant={"contained"}
+          onClick={() => navigate("signupcustomer")}
+          
+        >
+          Заказчик
+        </BasicButton>
+        <BasicButton variant={"contained"}>Перевозчик</BasicButton> */}
+      <SignUpForm addNewUser={addNewUser} />
+      {/* </Box> */}
     </GridWrapper>
   );
 };

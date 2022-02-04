@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import BasicCard from "../UI/common/BasicCard";
 import { Box, TextField } from "@mui/material";
 
@@ -15,10 +15,9 @@ const defaultInputValues = {
   phoneNumber: "",
   email: "",
   password: "",
-  city: "",
 };
 
-const SignUpForm = ({ addNewUser }) => {
+const SignInForm = ({ addNewUser }) => {
   const [values, setValues] = useState(defaultInputValues);
 
   const handleChange = (value) => {
@@ -48,7 +47,6 @@ const SignUpForm = ({ addNewUser }) => {
       .required("password is required")
       .min(3, "password must be at least 3 characters")
       .max(6, "password must be no more 6 characters"),
-    city: Yup.string().required("City is required"),
   });
 
   const {
@@ -60,7 +58,7 @@ const SignUpForm = ({ addNewUser }) => {
   });
 
   const getHeader = () => {
-    return <Box sx={formStyle.header}>Sign Un Form</Box>;
+    return <Box sx={formStyle.header}>Sign In Form</Box>;
   };
 
   const getContent = () => (
@@ -130,19 +128,6 @@ const SignUpForm = ({ addNewUser }) => {
           handleChange({ ...values, password: event.target.value })
         }
       />
-      <TextField
-        placeholder="city"
-        name="city"
-        label="city"
-        required
-        {...register("city")}
-        error={errors.city ? true : false}
-        helperText={errors.city?.message}
-        value={values.city}
-        onChange={(event) =>
-          handleChange({ ...values, city: event.target.value })
-        }
-      />
       <BasicButton variant="contained" onClick={handleSubmit(addUser)}>
         Submit
       </BasicButton>
@@ -152,4 +137,4 @@ const SignUpForm = ({ addNewUser }) => {
   return <BasicCard header={getHeader()} content={getContent()} />;
 };
 
-export default SignUpForm;
+export default SignInForm;
