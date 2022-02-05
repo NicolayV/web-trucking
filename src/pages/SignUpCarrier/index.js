@@ -1,9 +1,9 @@
-import { Grid } from "@mui/material";
 import React, { useState } from "react";
-import SignUpForm from "../../components/SignUpForm";
+import CarrierPersonalForm from "../../components/CarrierPersonalForm";
+import CarrierVehicleForm from "../../components/CarrierVehicleForm";
 import GridWrapper from "../../components/UI/common/GridWrapper";
 
-const SignUpCustomer = () => {
+const SignUpCarrier = () => {
   const [values, setValues] = useState("");
   console.log(values);
 
@@ -17,11 +17,10 @@ const SignUpCustomer = () => {
 
   return (
     <GridWrapper>
-      <Grid container justifyContent="space-around">
-        <SignUpForm addNewUser={addNewUser} />
-      </Grid>
+      {/* <CarrierPersonalForm addNewUser={addNewUser}/> */}
+      <CarrierVehicleForm addNewUser={addNewUser} />
     </GridWrapper>
   );
 };
 
-export default SignUpCustomer;
+export default SignUpCarrier;

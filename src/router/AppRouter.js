@@ -9,6 +9,7 @@ import NewsArticle from "../pages/NewsArticle";
 import PersonalArea from "../pages/PersonalArea";
 import SignIn from "../pages/SignIn";
 import SignUp from "../pages/SignUp";
+import SignUpCarrier from "../pages/SignUpCarrier";
 import SignUpCustomer from "../pages/SignUpCustomer";
 
 const routeItems = [
@@ -20,6 +21,7 @@ const routeItems = [
   { id: 5, path: "signin", element: <SignIn /> },
   { id: 6, path: "signup", element: <SignUp /> },
   { id: 7, path: "signup/customer", element: <SignUpCustomer /> },
+  { id: 8, path: "signup/carrier", element: <SignUpCarrier /> },
 ];
 
 const AppRouter = () => {

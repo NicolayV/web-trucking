@@ -8,9 +8,6 @@ import BasicButton from "../../components/UI/common/BasicButton";
 const SignUp = () => {
   const navigate = useNavigate();
 
-  const handleNavigate = () =>
-    navigate("../signup/customer", { replace: true });
-
   const signupStyles = {
     display: "flex",
     justifyContent: "space-around",
@@ -20,10 +17,18 @@ const SignUp = () => {
   return (
     <GridWrapper>
       <Box sx={signupStyles}>
-        <BasicButton variant={"contained"} onClick={handleNavigate}>
+        <BasicButton
+          variant={"contained"}
+          onClick={() => navigate("../signup/customer", { replace: true })}
+        >
           Заказчик
         </BasicButton>
-        <BasicButton variant={"contained"}>Перевозчик</BasicButton>
+        <BasicButton
+          variant={"contained"}
+          onClick={() => navigate("../signup/carrier", { replace: true })}
+        >
+          Перевозчик
+        </BasicButton>
       </Box>
     </GridWrapper>
   );
