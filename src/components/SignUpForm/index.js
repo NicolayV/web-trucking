@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import BasicCard from "../UI/common/BasicCard";
-import { Box, TextField } from "@mui/material";
+import { Box, Divider, TextField } from "@mui/material";
 
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
@@ -74,7 +74,7 @@ const SignUpForm = ({ addNewUser }) => {
   const getHeader = () => {
     return (
       <>
-        <pre>{JSON.stringify(formValues, undefined, 2)}</pre>
+        {/* <pre>{JSON.stringify(formValues, undefined, 2)}</pre> */}
         <Box sx={formStyle.header}>Sign Up Form</Box>
       </>
     );
@@ -93,26 +93,30 @@ const SignUpForm = ({ addNewUser }) => {
           value={formValues.login}
           onChange={handleChange}
         />
-        <TextField
-          placeholder="first name"
-          name="fname"
-          label="firs name"
-          {...register("fname")}
-          error={errors.fname ? true : false}
-          helperText={errors.fname?.message}
-          value={formValues.fname}
-          onChange={handleChange}
-        />
-        <TextField
-          placeholder="last name"
-          name="lname"
-          label="last name"
-          {...register("lname")}
-          error={errors.lname ? true : false}
-          helperText={errors.lname?.message}
-          value={formValues.lname}
-          onChange={handleChange}
-        />
+        <Box sx={formStyle.inputField}>
+          <TextField
+            fullWidth
+            placeholder="first name"
+            name="fname"
+            label="firs name"
+            {...register("fname")}
+            error={errors.fname ? true : false}
+            helperText={errors.fname?.message}
+            value={formValues.fname}
+            onChange={handleChange}
+          />
+          <TextField
+            fullWidth
+            placeholder="last name"
+            name="lname"
+            label="last name"
+            {...register("lname")}
+            error={errors.lname ? true : false}
+            helperText={errors.lname?.message}
+            value={formValues.lname}
+            onChange={handleChange}
+          />
+        </Box>
         <TextField
           placeholder="E-mail"
           name="email"
@@ -133,26 +137,33 @@ const SignUpForm = ({ addNewUser }) => {
           value={formValues.phoneNumber}
           onChange={handleChange}
         />
-        <TextField
-          placeholder="password"
-          name="password"
-          label="password"
-          {...register("password")}
-          error={errors.password ? true : false}
-          helperText={errors.password?.message}
-          value={formValues.password}
-          onChange={handleChange}
-        />
-        <TextField
-          placeholder="confirmPassword"
-          name="confirmPassword"
-          label="confirmPassword"
-          {...register("confirmPassword")}
-          error={errors.confirmPassword ? true : false}
-          helperText={errors.confirmPassword?.message}
-          value={formValues.confirmPassword}
-          onChange={handleChange}
-        />
+
+        <Box sx={formStyle.inputField}>
+          <TextField
+            fullWidth
+            // sx={{ width: "275px" }}
+            placeholder="password"
+            name="password"
+            label="password"
+            {...register("password")}
+            error={errors.password ? true : false}
+            helperText={errors.password?.message}
+            value={formValues.password}
+            onChange={handleChange}
+          />
+          <TextField
+            // sx={{ width: "275px" }}
+            fullWidth
+            placeholder="confirmPassword"
+            name="confirmPassword"
+            label="confirmPassword"
+            {...register("confirmPassword")}
+            error={errors.confirmPassword ? true : false}
+            helperText={errors.confirmPassword?.message}
+            value={formValues.confirmPassword}
+            onChange={handleChange}
+          />
+        </Box>
         <TextField
           placeholder="city"
           name="city"
@@ -163,9 +174,11 @@ const SignUpForm = ({ addNewUser }) => {
           value={formValues.city}
           onChange={handleChange}
         />
-        <BasicButton type="submit" variant="contained">
-          Submit
-        </BasicButton>
+        <Box sx={formStyle.buttons}>
+          <BasicButton type="submit" variant="contained">
+            Submit
+          </BasicButton>
+        </Box>
       </Box>
     </form>
   );

@@ -6,21 +6,34 @@ const formStyle = {
   header: {
     display: "flex",
     justifyContent: "center",
-    padding: "40px 16px 0px 16px",
+    backgroundColor: "#f5f5f5",
+    borderBottom: "1px solid rgba(0, 0, 0, 0.12)",
+    padding: "10px",
+
+    color: "text.primary",
+    fontSize: 34,
+    fontWeight: "medium",
   },
+
   inputFields: {
-    // display: "flex",
-    // flexDirection: "column",
-    // marginTop: "20px",
-    // marginBottom: "15px",
-    // ".MuiFormControl-root": {
-    //   marginBottom: "20px",
-    // },
+    display: "flex",
+    flexDirection: "column",
+
+    ".MuiFormControl-root": {
+      margin: "5px",
+      marginBottom: "20px",
+    },
   },
-  inputField: {},
+
+  inputField: {
+    display: "flex",
+    justifyContent: "space-between",
+  },
+
   buttons: {
     display: "flex",
-    justifyContent: "end",
+    justifyContent: "flex-end",
+    margin: "5px",
   },
 };
 export default formStyle;

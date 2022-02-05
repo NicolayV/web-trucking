@@ -15,9 +15,7 @@ const About = () => {
   const [searchResults, setSearchResults] = useState(users);
 
   const getHeader = () => {
-    const handleSearch = (value) => {
-      filterData(value);
-    };
+    const handleSearch = (value) => filterData(value);
 
     const filterData = (value) => {
       const lowercasedValue = value.toLowerCase().trim();
