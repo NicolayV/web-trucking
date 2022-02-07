@@ -128,9 +128,11 @@ const CarrierPersonalForm = ({ addNewUser }) => {
           handleChange({ ...values, password: event.target.value })
         }
       />
-      <BasicButton variant="contained" onClick={handleSubmit(addUser)}>
-        Submit
-      </BasicButton>
+      <Box sx={formStyle.buttons}>
+        <BasicButton type="submit" variant="contained">
+          Submit
+        </BasicButton>
+      </Box>
     </Box>
   );
 

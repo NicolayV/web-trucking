@@ -1,3 +1,4 @@
+import { Grid } from "@mui/material";
 import React, { useState } from "react";
 import CarrierPersonalForm from "../../components/CarrierPersonalForm";
 import CarrierVehicleForm from "../../components/CarrierVehicleForm";
@@ -17,8 +18,10 @@ const SignUpCarrier = () => {
 
   return (
     <GridWrapper>
-      {/* <CarrierPersonalForm addNewUser={addNewUser}/> */}
-      <CarrierVehicleForm addNewUser={addNewUser} />
+      <Grid container justifyContent="space-around">
+        <CarrierVehicleForm addNewUser={addNewUser} />
+        <CarrierPersonalForm addNewUser={addNewUser} />
+      </Grid>
     </GridWrapper>
   );
 };

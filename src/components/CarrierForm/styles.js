@@ -14,7 +14,6 @@ const formStyle = {
     fontSize: 34,
     fontWeight: "medium",
   },
-
   inputFields: {
     display: "flex",
     flexDirection: "column",

@@ -1,12 +1,11 @@
-import React, { useState, useEffect, useRef } from "react";
+import React from "react";
 import { motion } from "framer-motion";
-import { Grid } from "@mui/material";
 import BasicCard from "../../components/UI/common/BasicCard";
-import images from "../../assets/images/slider";
+// import images from "../../assets/images/slider";
 import GridWrapper from "../../components/UI/common/GridWrapper";
 
 const NewsArticle = () => {
-  console.log(images);
+  // console.log(images);
   const sliderStyle = {
     carousel: { cursor: "grab" },
     innerCarousel: {
@@ -29,13 +28,13 @@ const NewsArticle = () => {
         drag="x"
         dragConstraints={{ right: 0 }}
       >
-        {images.map((image, index) => {
+        {/* {images.map((image, index) => {
           return (
             <motion.div key={index} style={sliderStyle.item}>
               <img style={sliderStyle.itemImg} src={image} alt="" />
             </motion.div>
           );
-        })}
+        })} */}
       </motion.div>
     </motion.div>
   );
