@@ -48,14 +48,23 @@ const CarrierForm = ({ addNewUser }) => {
   const addUser = (data) => addNewUser(data);
 
   const [activeStep, setActiveStep] = useState(0);
+  const [skippedSteps, setSkippedSteps] = useState([]);
   const steps = getSteps();
 
   const isStepOptional = (step) => {
     return step === 1;
   };
 
+  const isStepSkipped = (step) => {
+    return skippedSteps.includes(step);
+  };
+
   const handleNext = () => setActiveStep(activeStep + 1);
   const handleBack = () => setActiveStep(activeStep - 1);
+  const handleSkip = () => {
+    setSkippedSteps([activeStep]);
+    setActiveStep(activeStep + 1);
+  };
 
   const phoneRegExp =
     /^((\\+[1-9]{1,4}[ \\-]*)|(\\([0-9]{2,3}\\)[ \\-]*)|([0-9]{2,4})[ \\-]*)*?[0-9]{3,4}?[ \\-]*[0-9]{3,4}?$/;
@@ -257,13 +266,17 @@ const CarrierForm = ({ addNewUser }) => {
       <Stepper activeStep={activeStep}>
         {steps.map((step, index) => {
           const labelProps = {};
+          const stepProps = {};
           if (isStepOptional(index)) {
             labelProps.optional = (
               <Typography variant="caption">optional</Typography>
             );
           }
+          if (isStepSkipped(index)) {
+            stepProps.completed = false;
+          }
           return (
-            <Step key={step}>
+            <Step key={step} {...stepProps}>
               <StepLabel {...labelProps}>{step}</StepLabel>
             </Step>
           );
@@ -286,7 +299,9 @@ const CarrierForm = ({ addNewUser }) => {
             <BasicButton onClick={handleBack} disabled={activeStep === 0}>
               Back Step
             </BasicButton>
-            {isStepOptional(activeStep) && <BasicButton>Skip</BasicButton>}
+            {isStepOptional(activeStep) && (
+              <BasicButton onClick={handleSkip}>Skip</BasicButton>
+            )}
             <BasicButton onClick={handleNext}>
               {activeStep === 3 ? "Finish" : "Next Step"}
             </BasicButton>
