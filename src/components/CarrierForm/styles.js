@@ -1,6 +1,7 @@
 const formStyle = {
   card: {
-    width: "600px",
+    width: "700px",
+    height: "700px",
   },
 
   header: {
@@ -31,7 +32,7 @@ const formStyle = {
 
   buttons: {
     display: "flex",
-    justifyContent: "flex-end",
+    alignSelf: "flex-end",
     margin: "5px",
   },
 };

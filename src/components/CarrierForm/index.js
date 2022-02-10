@@ -17,7 +17,8 @@ import BasicButton from "../UI/common/BasicButton";
 
 const defaultInputValues = {
   login: "",
-  fullName: "",
+  fname: "",
+  lname: "",
   phoneNumber: "",
   email: "",
   password: "",
@@ -32,6 +33,7 @@ const defaultInputValues = {
 
 const getSteps = () => [
   "Personal information",
+  "Contact information",
   "Vehicle information",
   "Other information",
 ];
@@ -59,10 +61,15 @@ const CarrierForm = ({ addNewUser }) => {
     return skippedSteps.includes(step);
   };
 
-  const handleNext = () => setActiveStep(activeStep + 1);
+  const handleNext = () => {
+    setActiveStep(activeStep + 1);
+    setSkippedSteps(skippedSteps.filter((skipItem) => skipItem !== activeStep));
+  };
   const handleBack = () => setActiveStep(activeStep - 1);
   const handleSkip = () => {
-    setSkippedSteps([activeStep]);
+    if (!isStepSkipped(activeStep)) {
+      setSkippedSteps([...skippedSteps, activeStep]);
+    }
     setActiveStep(activeStep + 1);
   };
 
@@ -70,15 +77,19 @@ const CarrierForm = ({ addNewUser }) => {
     /^((\\+[1-9]{1,4}[ \\-]*)|(\\([0-9]{2,3}\\)[ \\-]*)|([0-9]{2,4})[ \\-]*)*?[0-9]{3,4}?[ \\-]*[0-9]{3,4}?$/;
   const stateNumberRegExp =
     /^((\\+[1-9]{1,4}[ \\-]*)|(\\([0-9]{2,3}\\)[ \\-]*)|([0-9]{2,4})[ \\-]*)*?[0-9]{3,4}?[ \\-]*[0-9]{3,4}?$/;
+  const nameRegExp = /^([^0-9]*)$/;
 
   // validationRules
   const validationSchema = Yup.object().shape({
     login: Yup.string()
       .required("Login is required")
       .min(6, "Login must be at least 6 characters"),
-    fullName: Yup.string()
-      .required("fullName is required")
-      .min(6, "fullName must be at least 6 characters"),
+    fname: Yup.string()
+      .required("first name is required")
+      .matches(nameRegExp, "First name should not contain numbers"),
+    lname: Yup.string()
+      .required("last name is required")
+      .matches(nameRegExp, "Last name should not contain numbers"),
     email: Yup.string()
       .required("Email is required")
       .email("Email is invalid."),
@@ -87,6 +98,12 @@ const CarrierForm = ({ addNewUser }) => {
       .required("password is required")
       .min(3, "password must be at least 3 characters")
       .max(6, "password must be no more 6 characters"),
+
+    confirmPassword: Yup.string().oneOf(
+      [Yup.ref("password")],
+      "Password should Match!"
+    ),
+
     carrierType: Yup.string().required("carrierType is required"),
     carBrand: Yup.string().required("carBrand is required"),
     carModel: Yup.string().required("carModel is required"),
@@ -127,15 +144,52 @@ const CarrierForm = ({ addNewUser }) => {
               onChange={handleChange}
             />
             <TextField
-              placeholder="fullName"
-              name="fullName"
-              label="fullName"
-              {...register("fullName")}
-              error={errors.fullName ? true : false}
-              helperText={errors.fullName?.message}
-              value={formValues.fullName}
+              placeholder="first name"
+              name="fname"
+              label="firs name"
+              {...register("fname")}
+              error={errors.fname ? true : false}
+              helperText={errors.fname?.message}
+              value={formValues.fname}
               onChange={handleChange}
             />
+            <TextField
+              placeholder="last name"
+              name="lname"
+              label="last name"
+              {...register("lname")}
+              error={errors.lname ? true : false}
+              helperText={errors.lname?.message}
+              value={formValues.lname}
+              onChange={handleChange}
+            />
+
+            <TextField
+              placeholder="password"
+              name="password"
+              label="password"
+              {...register("password")}
+              error={errors.password ? true : false}
+              helperText={errors.password?.message}
+              value={formValues.password}
+              onChange={handleChange}
+            />
+
+            <TextField
+              placeholder="confirmPassword"
+              name="confirmPassword"
+              label="confirmPassword"
+              {...register("confirmPassword")}
+              error={errors.confirmPassword ? true : false}
+              helperText={errors.confirmPassword?.message}
+              value={formValues.confirmPassword}
+              onChange={handleChange}
+            />
+          </Box>
+        );
+      case 1:
+        return (
+          <Box sx={formStyle.inputFields}>
             <TextField
               placeholder="E-mail"
               name="email"
@@ -156,19 +210,9 @@ const CarrierForm = ({ addNewUser }) => {
               value={formValues.phoneNumber}
               onChange={handleChange}
             />
-            <TextField
-              placeholder="password"
-              name="password"
-              label="password"
-              {...register("password")}
-              error={errors.password ? true : false}
-              helperText={errors.password?.message}
-              value={formValues.password}
-              onChange={handleChange}
-            />
           </Box>
         );
-      case 1:
+      case 2:
         return (
           <Box sx={formStyle.inputFields}>
             <TextField
@@ -231,7 +275,7 @@ const CarrierForm = ({ addNewUser }) => {
             </Box>
           </Box>
         );
-      case 2:
+      case 3:
         return (
           <Box sx={formStyle.inputFields}>
             <TextField
@@ -263,13 +307,19 @@ const CarrierForm = ({ addNewUser }) => {
 
   const getContent = () => (
     <>
-      <Stepper activeStep={activeStep}>
+      <Stepper alternativeLabel activeStep={activeStep}>
         {steps.map((step, index) => {
           const labelProps = {};
           const stepProps = {};
           if (isStepOptional(index)) {
             labelProps.optional = (
-              <Typography variant="caption">optional</Typography>
+              <Typography
+                sx={{ display: "block" }}
+                align="center"
+                variant="caption"
+              >
+                optional
+              </Typography>
             );
           }
           if (isStepSkipped(index)) {
@@ -283,29 +333,35 @@ const CarrierForm = ({ addNewUser }) => {
         })}
       </Stepper>
       <form onSubmit={handleSubmit(addUser)}>
+        {/*  */}
         {getStepContent(activeStep)}
 
-        <Box sx={formStyle.buttons}>
-          <BasicButton type="submit" variant="contained">
-            Submit
-          </BasicButton>
-        </Box>
-        {activeStep === 4 ? (
+        {activeStep === steps.length ? (
           <Typography variant="h5" align="center" p={1}>
             Well done, form completed!
           </Typography>
         ) : (
-          <>
-            <BasicButton onClick={handleBack} disabled={activeStep === 0}>
-              Back Step
+          <Box sx={{ display: "flex", flexDirection: "column" }}>
+            <BasicButton
+              sx={formStyle.buttons}
+              disabled={activeStep === steps.length - 1 ? false : true}
+              type="submit"
+              variant="contained"
+            >
+              Submit
             </BasicButton>
-            {isStepOptional(activeStep) && (
-              <BasicButton onClick={handleSkip}>Skip</BasicButton>
-            )}
-            <BasicButton onClick={handleNext}>
-              {activeStep === 3 ? "Finish" : "Next Step"}
-            </BasicButton>
-          </>
+            <Box sx={{ display: "flex", alignItems: "flex-end" }}>
+              <BasicButton onClick={handleBack} disabled={activeStep === 0}>
+                Back Step
+              </BasicButton>
+              {isStepOptional(activeStep) && (
+                <BasicButton onClick={handleSkip}>Skip</BasicButton>
+              )}
+              <BasicButton onClick={handleNext}>
+                {activeStep === steps.length - 1 ? "Finish" : "Next Step"}
+              </BasicButton>
+            </Box>
+          </Box>
         )}
       </form>
     </>
